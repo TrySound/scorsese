@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+
+	section {
+		margin: 800px auto;
+		width: 600px;
+		background: #eef;
+	}
+
+	header,
+	article,
+	footer {
+		line-height: 1;
+		padding: 30px;
+	}
+	.animated {
+		transition: .3s ease-out;
+	}
+
+	header {
+		background: #9ee;
+	}
+
+	footer {
+		background: #ee9;
+	}
+
+	</style>
+</head>
+<body>
+
+<section>
+	<header>
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea, incidunt?</p>
+		<p>Similique tempora nesciunt illo debitis, molestiae doloribus fugit distinctio ratione!</p>
+		<p>Velit optio, ullam a modi illum accusamus odit incidunt ducimus.</p>
+		<p>Aperiam, facere, deserunt. Nulla, non facilis sequi natus odio ea!</p>
+		<p>Eveniet sunt mollitia provident soluta error cum non, tenetur, incidunt!</p>
+	</header>
+	<article>
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea, incidunt?</p>
+		<p>Similique tempora nesciunt illo debitis, molestiae doloribus fugit distinctio ratione!</p>
+		<p>Velit optio, ullam a modi illum accusamus odit incidunt ducimus.</p>
+		<p>Aperiam, facere, deserunt. Nulla, non facilis sequi natus odio ea!</p>
+		<p>Eveniet sunt mollitia provident soluta error cum non, tenetur, incidunt!</p>
+	</article>
+	<footer>
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea, incidunt?</p>
+		<p>Similique tempora nesciunt illo debitis, molestiae doloribus fugit distinctio ratione!</p>
+		<p>Velit optio, ullam a modi illum accusamus odit incidunt ducimus.</p>
+		<p>Aperiam, facere, deserunt. Nulla, non facilis sequi natus odio ea!</p>
+		<p>Eveniet sunt mollitia provident soluta error cum non, tenetur, incidunt!</p>
+	</footer>
+</section>
+
+<script src="dist/scorsese.standalone.js"></script>
+<script>
+
+var inst = scorsese([
+	{
+		scene: 'section',
+		cast: [
+			{
+				actor: 'header',
+				translateX: 100
+			},
+			{
+				actor: 'footer',
+				rotate: 50,
+				translateX: -100
+			}
+		]
+	}
+]);
+requestAnimationFrame(function () {
+	var elements = document.querySelectorAll('footer,header,article');
+	[].forEach.call(elements, function (el) {
+		el.className += ' animated';
+	});
+});
+
+</script>
+
+</body>
+</html>

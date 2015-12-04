@@ -1,0 +1,24 @@
+{
+  "name": "scorsese",
+  "version": "1.0.0",
+  "description": "parallax scrolling module",
+  "main": "dist/index.js",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "test": "gulp"
+  },
+  "keywords": [
+    "parallax",
+    "scroll",
+    "scene",
+    "movie"
+  ],
+  "author": "Bogdan Chadkin <trysound@yandex.ru>",
+  "license": "MIT",
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "rollup": "^0.21.1"
+  }
+}
