@@ -13,7 +13,11 @@ export default function (config) {
 					while (j < max) {
 						cast.push({
 							el: actors[j],
-							style: getBuildStyleFunction(node)
+							opacity: typeof node.opacity === 'number' ? node.opacity : false,
+							translateX: typeof node.translateX === 'number' ? node.translateX : false,
+							translateY: typeof node.translateY === 'number' ? node.translateY : false,
+							rotate: typeof node.rotate === 'number' ? node.rotate : false,
+							scale: typeof node.scale === 'number' ? node.scale : false
 						});
 						j += 1;
 					}
@@ -24,50 +28,4 @@ export default function (config) {
 		}
 		return movie;
 	}, []);
-}
-
-function getBuildStyleFunction(actor) {
-	var hasOpacity = false;
-	var hasTransform = false;
-	var hasTranslateX = false;
-	var hasTranslateY = false;
-
-	if (typeof actor.opacity === 'number') {
-		hasOpacity = true;
-	}
-
-	if (typeof actor.translateX === 'number') {
-		hasTransform = true;
-		hasTranslateX = true;
-	}
-
-	if (typeof actor.translateY === 'number') {
-		hasTransform = true;
-		hasTranslateY = true;
-	}
-
-	return function (ratio) {
-		// translate
-		// scale
-		// rotate
-		// opacity
-		var style = '';
-		var transform = '';
-		if (hasOpacity) {
-			style += 'opacity:' + ratio + ';';
-		}
-
-		if (hasTransform) {
-			style += 'transform:';
-			if (hasTranslateX) {
-				style += ' translateX(' + (ratio * actor.translateX).toFixed(2) + 'px)';
-			}
-			if (hasTranslateY) {
-				style += ' translateY(' + (ratio * actor.translateY).toFixed(2) + 'px)';
-			}
-			style += ';';
-		}
-
-		return style;
-	};
 }

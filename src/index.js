@@ -7,25 +7,17 @@ export default function scorsese(config, opts) {
 	opts = opts || {};
 
 	var tree = buildTree(config);
-	var boundUpdateTree = updateTree.bind(null, tree);
-	var boundRequestUpdate = requestAnimationFrame.bind(null, boundUpdateTree);
+	var boundUpdate = updateTree.bind(null, tree);
+	var boundRequest = requestAnimationFrame.bind(null, boundUpdate);
 	updateTree(tree);
-	window.addEventListener('scroll', boundRequestUpdate);
+	window.addEventListener('scroll', boundRequest);
 
 	return {
-		refresh: function (newConfig) {
-			if (Array.isArray(newConfig)) {
-				config = newConfig;
-			}
-			this.destroy();
-			tree = buildTree(config);
-			boundUpdateTree = updateTree.bind(null, tree);
-			boundRequestUpdate = requestAnimationFrame.bind(null, boundUpdateTree);
+		update: function () {
 			updateTree(tree);
-			window.addEventListener('scroll', boundRequestUpdate);
 		},
 		destroy: function () {
-			window.removeEventListener('scroll', boundRequestUpdate);
+			window.removeEventListener('scroll', boundRequest);
 			resetTree(tree);
 		}
 	};

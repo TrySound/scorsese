@@ -1,3 +1,5 @@
+import style from './style';
+
 export default function (tree) {
 	var top = window.pageYOffset;
 	var height = window.innerHeight;
@@ -10,7 +12,7 @@ export default function (tree) {
 		if (rect.top < height && rect.bottom > 0) {
 			ratio = (height - rect.top) / (height + rect.height);
 			scene.nodes.forEach(function (actor) {
-				actor.el.style.cssText = actor.style(ratio);
+				style(actor, ratio);
 			});
 		}
 	});
