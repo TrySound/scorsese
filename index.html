@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width">
 	<title>Document</title>
 	<style>
 
@@ -18,11 +19,15 @@
 		padding: 30px;
 	}
 	.animated {
-		transition: .3s ease-out;
+		/*transition: .3s ease-out;*/
 	}
 
 	header {
 		background: #9ee;
+	}
+
+	article {
+		background: #ccc;
 	}
 
 	footer {
@@ -65,10 +70,13 @@ var inst = scorsese([
 		scene: 'section',
 		cast: [
 			{
-				actor: 'header',
-				translateX: 100,
+				opacity: '+1-0.54 dhdd'
+			},
+			{
+				actor: 'article',
+				translateX: '-100%',
 				easing: function (ratio) {
-					if (ratio < .6) {
+					if (ratio < .5) {
 						return ratio;
 					} else {
 						return 1 - ratio;
@@ -78,7 +86,7 @@ var inst = scorsese([
 			{
 				actor: 'footer',
 				rotate: 90,
-				scale: 2,
+				scale: .5,
 				translateX: -100
 			}
 		]

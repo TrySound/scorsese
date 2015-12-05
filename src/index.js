@@ -1,6 +1,6 @@
-import buildTree from './lib/build';
-import resetTree from './lib/reset';
-import updateTree from './lib/update';
+import buildTree from './lib/build-tree';
+import resetTree from './lib/reset-tree';
+import updateTree from './lib/update-tree';
 
 export default function scorsese(config) {
 	config = Array.isArray(config) ? config : [];

@@ -1,3 +1,5 @@
+import parseValue from './parse-value';
+
 export default function (config) {
 	return config.reduce(function (movie, node) {
 		var scenes = document.querySelectorAll(node.scene);
@@ -10,15 +12,21 @@ export default function (config) {
 					var actors = scenes[i].querySelectorAll(node.actor);
 					var j = 0;
 					var max = actors.length;
+					var opacity = parseValue(node.opacity);
+					var translateX = parseValue(node.translateX, 'px');
+					var translateY = parseValue(node.translateY, 'px');
+					var rotate = parseValue(node.rotate, 'deg');
+					var scale = parseValue(node.scale);
+					var easing = typeof node.easing === 'function' ? node.easing : false;
 					while (j < max) {
 						cast.push({
 							el: actors[j],
-							opacity: typeof node.opacity === 'number' ? node.opacity : false,
-							translateX: typeof node.translateX === 'number' ? node.translateX : false,
-							translateY: typeof node.translateY === 'number' ? node.translateY : false,
-							rotate: typeof node.rotate === 'number' ? node.rotate : false,
-							scale: typeof node.scale === 'number' ? node.scale : false,
-							easing: typeof node.easing === 'function' ? node.easing : false
+							opacity: opacity,
+							translateX: translateX,
+							translateY: translateY,
+							rotate: rotate,
+							scale: scale,
+							easing: easing
 						});
 						j += 1;
 					}

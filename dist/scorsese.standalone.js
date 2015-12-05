@@ -4,6 +4,42 @@
 	global.scorsese = factory();
 }(this, function () { 'use strict';
 
+	function parseValue (value, def) {
+		if (typeof value === 'number') {
+			return {
+				number: value,
+				unit: def || ''
+			};
+		}
+
+		if (typeof value !== 'string') {
+			return false;
+		}
+
+		var pos = 0;
+		var max = value.length;
+		var code;
+
+		while (pos < max) {
+			code = value.charCodeAt(pos);
+			if (!(code === 43 || code === 45 || code === 46) && (code < 47 || 58 < code)) {
+				break;
+			}
+			pos += 1;
+		}
+
+		var number = Number(value.slice(0, pos));
+
+		if (isNaN(number)) {
+			return false;
+		}
+
+		return {
+			number: number,
+			unit: value.slice(pos)
+		};
+	}
+
 	function buildTree (config) {
 		return config.reduce(function (movie, node) {
 			var scenes = document.querySelectorAll(node.scene);
@@ -16,15 +52,21 @@
 						var actors = scenes[i].querySelectorAll(node.actor);
 						var j = 0;
 						var max = actors.length;
+						var opacity = parseValue(node.opacity);
+						var translateX = parseValue(node.translateX, 'px');
+						var translateY = parseValue(node.translateY, 'px');
+						var rotate = parseValue(node.rotate, 'deg');
+						var scale = parseValue(node.scale);
+						var easing = typeof node.easing === 'function' ? node.easing : false;
 						while (j < max) {
 							cast.push({
 								el: actors[j],
-								opacity: typeof node.opacity === 'number' ? node.opacity : false,
-								translateX: typeof node.translateX === 'number' ? node.translateX : false,
-								translateY: typeof node.translateY === 'number' ? node.translateY : false,
-								rotate: typeof node.rotate === 'number' ? node.rotate : false,
-								scale: typeof node.scale === 'number' ? node.scale : false,
-								easing: typeof node.easing === 'function' ? node.easing : false
+								opacity: opacity,
+								translateX: translateX,
+								translateY: translateY,
+								rotate: rotate,
+								scale: scale,
+								easing: easing
 							});
 							j += 1;
 						}
@@ -66,27 +108,38 @@
 	function style$1 (actor, ratio) {
 		var style = actor.el.style;
 
-		if (actor.easing !== false) {
-			ratio = actor.easing(ratio, actor.el);
+		var easing = actor.easing;
+		if (easing) {
+			ratio = easing(ratio, actor.el);
 		}
 
-		if (actor.opacity !== false) {
-			style.opacity = ratio * actor.opacity;
+		var opacity = actor.opacity;
+		if (opacity) {
+			style.opacity = ratio * opacity.number;
 		}
 
 		var transform = '';
-		if (actor.translateX !== false) {
-			transform += ' translateX(' + ratio * actor.translateX + 'px)';
+
+		var translateX = actor.translateX;
+		if (translateX) {
+			transform += ' translateX(' + ratio * translateX.number + translateX.unit + ')';
 		}
-		if (actor.translateY !== false) {
-			transform += ' translateY(' + ratio * actor.translateY + 'px)';
+
+		var translateY = actor.translateY;
+		if (translateY) {
+			transform += ' translateY(' + ratio * translateY.number + translateY.unit + ')';
 		}
-		if (actor.scale !== false) {
-			transform += ' scale(' + ratio * actor.scale + ')';
+
+		var scale = actor.scale;
+		if (scale) {
+			transform += ' scale(' + ratio * scale.number + ')';
 		}
-		if (actor.rotate !== false) {
-			transform += ' rotate(' + ratio * actor.rotate + 'deg)';
+
+		var rotate = actor.rotate;
+		if (rotate) {
+			transform += ' rotate(' + ratio * rotate.number + rotate.unit + ')';
 		}
+
 		if (transform) {
 			style[transformProp] = transform;
 		}

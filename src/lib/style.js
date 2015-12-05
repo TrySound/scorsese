@@ -3,27 +3,38 @@ import { transform as transformProp } from './props';
 export default function (actor, ratio) {
 	var style = actor.el.style;
 
-	if (actor.easing !== false) {
-		ratio = actor.easing(ratio, actor.el);
+	var easing = actor.easing;
+	if (easing) {
+		ratio = easing(ratio, actor.el);
 	}
 
-	if (actor.opacity !== false) {
-		style.opacity = ratio * actor.opacity;
+	var opacity = actor.opacity;
+	if (opacity) {
+		style.opacity = ratio * opacity.number;
 	}
 
 	var transform = '';
-	if (actor.translateX !== false) {
-		transform += ' translateX(' + ratio * actor.translateX + 'px)';
+
+	var translateX = actor.translateX;
+	if (translateX) {
+		transform += ' translateX(' + ratio * translateX.number + translateX.unit + ')';
 	}
-	if (actor.translateY !== false) {
-		transform += ' translateY(' + ratio * actor.translateY + 'px)';
+
+	var translateY = actor.translateY;
+	if (translateY) {
+		transform += ' translateY(' + ratio * translateY.number + translateY.unit + ')';
 	}
-	if (actor.scale !== false) {
-		transform += ' scale(' + ratio * actor.scale + ')';
+
+	var scale = actor.scale;
+	if (scale) {
+		transform += ' scale(' + ratio * scale.number + ')';
 	}
-	if (actor.rotate !== false) {
-		transform += ' rotate(' + ratio * actor.rotate + 'deg)';
+
+	var rotate = actor.rotate;
+	if (rotate) {
+		transform += ' rotate(' + ratio * rotate.number + rotate.unit + ')';
 	}
+
 	if (transform) {
 		style[transformProp] = transform;
 	}
