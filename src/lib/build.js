@@ -17,7 +17,8 @@ export default function (config) {
 							translateX: typeof node.translateX === 'number' ? node.translateX : false,
 							translateY: typeof node.translateY === 'number' ? node.translateY : false,
 							rotate: typeof node.rotate === 'number' ? node.rotate : false,
-							scale: typeof node.scale === 'number' ? node.scale : false
+							scale: typeof node.scale === 'number' ? node.scale : false,
+							easing: typeof node.easing === 'function' ? node.easing : false
 						});
 						j += 1;
 					}

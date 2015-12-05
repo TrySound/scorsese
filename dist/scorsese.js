@@ -19,7 +19,8 @@ function buildTree (config) {
 							translateX: typeof node.translateX === 'number' ? node.translateX : false,
 							translateY: typeof node.translateY === 'number' ? node.translateY : false,
 							rotate: typeof node.rotate === 'number' ? node.rotate : false,
-							scale: typeof node.scale === 'number' ? node.scale : false
+							scale: typeof node.scale === 'number' ? node.scale : false,
+							easing: typeof node.easing === 'function' ? node.easing : false
 						});
 						j += 1;
 					}
@@ -61,6 +62,10 @@ function resetTree (tree) {
 function style$1 (actor, ratio) {
 	var style = actor.el.style;
 
+	if (actor.easing !== false) {
+		ratio = actor.easing(ratio, actor.el);
+	}
+
 	if (actor.opacity !== false) {
 		style.opacity = ratio * actor.opacity;
 	}
@@ -101,9 +106,8 @@ function updateTree (tree) {
 	});
 }
 
-function scorsese(config, opts) {
+function scorsese(config) {
 	config = Array.isArray(config) ? config : [];
-	opts = opts || {};
 
 	var tree = buildTree(config);
 	var boundUpdate = updateTree.bind(null, tree);
@@ -113,7 +117,7 @@ function scorsese(config, opts) {
 
 	return {
 		update: function () {
-			updateTree(tree);
+			boundRequest();
 		},
 		destroy: function () {
 			window.removeEventListener('scroll', boundRequest);

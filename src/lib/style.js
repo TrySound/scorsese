@@ -3,6 +3,10 @@ import { transform as transformProp } from './props';
 export default function (actor, ratio) {
 	var style = actor.el.style;
 
+	if (actor.easing !== false) {
+		ratio = actor.easing(ratio, actor.el);
+	}
+
 	if (actor.opacity !== false) {
 		style.opacity = ratio * actor.opacity;
 	}

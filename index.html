@@ -66,7 +66,14 @@ var inst = scorsese([
 		cast: [
 			{
 				actor: 'header',
-				translateX: 100
+				translateX: 100,
+				easing: function (ratio) {
+					if (ratio < .6) {
+						return ratio;
+					} else {
+						return 1 - ratio;
+					}
+				}
 			},
 			{
 				actor: 'footer',

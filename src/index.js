@@ -2,9 +2,8 @@ import buildTree from './lib/build';
 import resetTree from './lib/reset';
 import updateTree from './lib/update';
 
-export default function scorsese(config, opts) {
+export default function scorsese(config) {
 	config = Array.isArray(config) ? config : [];
-	opts = opts || {};
 
 	var tree = buildTree(config);
 	var boundUpdate = updateTree.bind(null, tree);
@@ -14,7 +13,7 @@ export default function scorsese(config, opts) {
 
 	return {
 		update: function () {
-			updateTree(tree);
+			boundRequest();
 		},
 		destroy: function () {
 			window.removeEventListener('scroll', boundRequest);
