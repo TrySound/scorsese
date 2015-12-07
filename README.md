@@ -17,6 +17,11 @@ scorsese([{
 });
 ```
 
+## Smooth scroll
+
+In some cases some browsers suck with it. But you can always use
+[simple lib which should be only included on the page](https://github.com/galambalazs/smoothscroll-for-websites)
+
 ## API
 
 ### var inst = scorsese(config)
