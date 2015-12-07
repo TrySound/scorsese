@@ -5,7 +5,7 @@ export default function (actor, ratio) {
 
 	var easing = actor.easing;
 	if (easing) {
-		ratio = easing(ratio, actor.el);
+		ratio = Math.min(Math.max(0, easing(ratio, actor.el)), 1);
 	}
 
 	var opacity = actor.opacity;

@@ -39,22 +39,17 @@ function parseValue (value, def) {
 function buildTree (config) {
 	return config.reduce(function (movie, node) {
 		var scenes = document.querySelectorAll(node.scene);
-		var i = 0;
-		var max = scenes.length;
-		while (i < max) {
+		for (var i = 0, max = scenes.length; i < max; i += 1) {
 			movie.push({
 				el: scenes[i],
-				nodes: (node.cast || []).reduce(function (cast, node) {
+				nodes: node.cast.reduce(function (cast, node) {
 					var actors = scenes[i].querySelectorAll(node.actor);
-					var j = 0;
-					var max = actors.length;
 					var opacity = parseValue(node.opacity);
 					var translateX = parseValue(node.translateX, 'px');
 					var translateY = parseValue(node.translateY, 'px');
 					var rotate = parseValue(node.rotate, 'deg');
 					var scale = parseValue(node.scale);
-					var easing = typeof node.easing === 'function' ? node.easing : false;
-					while (j < max) {
+					for (var j = 0, max = actors.length; j < max; j += 1) {
 						cast.push({
 							el: actors[j],
 							opacity: opacity,
@@ -62,14 +57,12 @@ function buildTree (config) {
 							translateY: translateY,
 							rotate: rotate,
 							scale: scale,
-							easing: easing
+							easing: node.easing
 						});
-						j += 1;
 					}
 					return cast;
 				}, [])
 			});
-			i += 1;
 		}
 		return movie;
 	}, []);
@@ -106,7 +99,7 @@ function style$1 (actor, ratio) {
 
 	var easing = actor.easing;
 	if (easing) {
-		ratio = easing(ratio, actor.el);
+		ratio = Math.min(Math.max(0, easing(ratio, actor.el)), 1);
 	}
 
 	var opacity = actor.opacity;
@@ -169,6 +162,11 @@ function scorsese(config) {
 	window.addEventListener('scroll', boundRequest);
 
 	return {
+		reinit: function () {
+			this.destroy();
+			updateTree(tree);
+			window.addEventListener('scroll', boundRequest);
+		},
 		update: function () {
 			boundRequest();
 		},

@@ -7,7 +7,9 @@
     "dist"
   ],
   "scripts": {
-    "test": "gulp"
+    "build": "gulp",
+    "pretest": "npm run build",
+    "test": "phantomjs test/test.js"
   },
   "keywords": [
     "parallax",
@@ -19,6 +21,7 @@
   "license": "MIT",
   "devDependencies": {
     "gulp": "^3.9.0",
+    "phantomjs": "^1.9.19",
     "rollup": "^0.21.1"
   }
 }

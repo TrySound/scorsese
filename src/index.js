@@ -12,6 +12,11 @@ export default function scorsese(config) {
 	window.addEventListener('scroll', boundRequest);
 
 	return {
+		reinit: function () {
+			this.destroy();
+			updateTree(tree);
+			window.addEventListener('scroll', boundRequest);
+		},
 		update: function () {
 			boundRequest();
 		},

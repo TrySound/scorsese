@@ -3,103 +3,46 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width">
-	<title>Document</title>
-	<style>
-
-	section {
-		margin: 800px auto;
-		width: 600px;
-		background: #eef;
-	}
-
-	header,
-	article,
-	footer {
-		line-height: 1;
-		padding: 30px;
-	}
-	.animated {
-		/*transition: .3s ease-out;*/
-	}
-
-	header {
-		background: #9ee;
-	}
-
-	article {
-		background: #ccc;
-	}
-
-	footer {
-		background: #ee9;
-	}
-
-	</style>
+	<title>Scorsese - cute parallax engine</title>
+	<link rel="stylesheet" href="https://necolas.github.io/normalize.css/3.0.2/normalize.css">
+	<link rel="stylesheet" href="assets/main.css">
 </head>
 <body>
 
-<section>
-	<header>
-		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea, incidunt?</p>
-		<p>Similique tempora nesciunt illo debitis, molestiae doloribus fugit distinctio ratione!</p>
-		<p>Velit optio, ullam a modi illum accusamus odit incidunt ducimus.</p>
-		<p>Aperiam, facere, deserunt. Nulla, non facilis sequi natus odio ea!</p>
-		<p>Eveniet sunt mollitia provident soluta error cum non, tenetur, incidunt!</p>
-	</header>
-	<article>
-		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea, incidunt?</p>
-		<p>Similique tempora nesciunt illo debitis, molestiae doloribus fugit distinctio ratione!</p>
-		<p>Velit optio, ullam a modi illum accusamus odit incidunt ducimus.</p>
-		<p>Aperiam, facere, deserunt. Nulla, non facilis sequi natus odio ea!</p>
-		<p>Eveniet sunt mollitia provident soluta error cum non, tenetur, incidunt!</p>
-	</article>
-	<footer>
-		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea, incidunt?</p>
-		<p>Similique tempora nesciunt illo debitis, molestiae doloribus fugit distinctio ratione!</p>
-		<p>Velit optio, ullam a modi illum accusamus odit incidunt ducimus.</p>
-		<p>Aperiam, facere, deserunt. Nulla, non facilis sequi natus odio ea!</p>
-		<p>Eveniet sunt mollitia provident soluta error cum non, tenetur, incidunt!</p>
-	</footer>
-</section>
+<a href="https://github.com/TrySound/scorsese" class="github-corner"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#fff; color:#151513; position: absolute; top: 0; border: 0; right: 0;"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
 
+<header>
+	<h1>Scorsese</h1>
+	<p>cute parallax engine</p>
+</header>
+
+<main>
+	<section class="pair">
+		<img class="photo photo-up" src="assets/now.jpg">
+		<img class="photo photo-down" src="assets/young.jpg">
+	</section>
+
+	<section class="pair">
+		<img class="photo photo-down" src="assets/with-leo.jpg">
+		<img class="photo photo-up" src="assets/with-de-niro.jpg">
+	</section>
+
+	<section class="oscar oscar-in">
+		<img class="oscar-image" src="assets/oscar.png">
+		<img class="photo photo-right" src="assets/oscared.jpg">
+	</section>
+	<section class="oscar oscar-out">
+		<img class="photo photo-left" src="assets/leo.jpg">
+		<img class="oscar-image" src="assets/oscar.png">
+	</section>
+</main>
+
+<footer>&copy; 2015 by <a href="https://github.com/TrySound">TrySound</a></footer>
+
+
+<script src="https://cdn.rawgit.com/galambalazs/smoothscroll-for-websites/master/SmoothScroll.js"></script>
 <script src="dist/scorsese.standalone.js"></script>
-<script>
-
-var inst = scorsese([
-	{
-		scene: 'section',
-		cast: [
-			{
-				opacity: '+1-0.54 dhdd'
-			},
-			{
-				actor: 'article',
-				translateX: '-100%',
-				easing: function (ratio) {
-					if (ratio < .5) {
-						return ratio;
-					} else {
-						return 1 - ratio;
-					}
-				}
-			},
-			{
-				actor: 'footer',
-				rotate: 90,
-				scale: .5,
-				translateX: -100
-			}
-		]
-	}
-]);
-requestAnimationFrame(function () {
-	var elements = document.querySelectorAll('footer,header,article');
-	[].forEach.call(elements, function (el) {
-		el.className += ' animated';
-	});
-});
-
-</script>
+<script src="assets/main.js"></script>
 
 </body>
 </html>
