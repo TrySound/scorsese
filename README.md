@@ -1,6 +1,6 @@
 # Scorsese
 
-> Cute parallax engine
+> Cute parallax engine. [See demo.](https://trysound.github.io/scorsese)
 
 ## Usage
 
