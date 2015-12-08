@@ -51,9 +51,10 @@ You can also specify unit in string value like `-20`, `'20%'`, `'20px'` etc.
 
 Destroy and reinitialize instance with the same config.
 
-### inst.update()
+### inst.update([breakpoint])
 
 Request update position of all actors in viewport.
+If breakpoint argument is passed then on less window width instance will be destroyed and on greater - reinitialized.
 
 ### inst.destroy()
 

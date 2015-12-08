@@ -36,29 +36,12 @@ var inst = scorsese([{
 	}]
 }]);
 
-window.addEventListener('load', function () {
-	inst.update();
+inst.update(800);
+
+window.addEventListener('resize', function () {
+	inst.update(800);
 });
 
-var enabled = true;
-
-function update(inst) {
-	if (window.innerWidth < 800) {
-		if (enabled) {
-			inst.destroy();
-			enabled = false;
-		}
-	} else {
-		if (!enabled) {
-			inst.reinit();
-			enabled = true;
-		} else {
-			inst.update();
-		}
-	}
-}
-
-update(inst);
-window.addEventListener('resize', function () {
-	update(inst);
+window.addEventListener('load', function () {
+	inst.update(800);
 });
